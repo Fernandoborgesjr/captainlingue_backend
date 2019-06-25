@@ -1,4 +1,4 @@
-const Categoria = require('../models/Categoria');
+const Categoria = require('../models/Atividade');
 
 //Para exportar os métodos do controler
 module.exports = {
@@ -12,9 +12,9 @@ module.exports = {
     //Para cadastrar uma nova Categoria
     async store(req, res) {
         console.log(req.body);
-        const { nomeCategoria } = req.body;
-        const categoria = await Categoria.create({
-            nomeCategoria,
+        const { titulo } = req.body;
+        const categoria = await Categoria.Categoria.create({
+            titulo,
         });
         //req.io.emit('categoria', categoria);
         return res.json(categoria);

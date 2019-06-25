@@ -1,27 +1,24 @@
-const Itens = require('../models/Itens');
-const Categorias = require('../models/Categoria');
+const Categorias = require('../models/Atividade');
 //Para exportar os métodos do controler
 module.exports = {
-    //Para listar as Categorias
+    //Para listar Itens
     async index(req, res) {
         //Para retornar com base na data de criação e de forma decrescente
-        const listaItens = await Itens.find().sort('-createdAt');
-        return res.json(listaItens);
+        const listaCategorias = await Categorias.find().sort('-createdAt');
+        const itens = [];
+        listaCategorias.map(categoria => {
+            itens.push(categoria.itens);
+        });
+        return res.json(itens);
     },
 
     //Para cadastrar um novo Item
     async store(req, res) {
-        console.log(req.body);
-        const { idCategoria, portugues, ingles } = req.body;
-        const item = await Itens.create({
-            idCategoria, portugues, ingles
-        });
-
+        const { idCategoria, titulo } = req.body;
         const categoria = await Categorias.findById(idCategoria);
-        categoria.itens.push(item);
+        categoria.itens.push({ titulo: titulo });
+        console.log(categoria);
         await categoria.save();
-
-        // req.io.emit('like', post);
         //req.io.emit('categoria', categoria);
         return res.json(categoria);
     },
