@@ -12,6 +12,8 @@ const AtividadeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    //Variavel para controlar exclusões do BD
+    statusExibicao: { type: Boolean, default: true },
 }, {
         timestamps: true,
     });
@@ -20,7 +22,9 @@ mongoose.model('Atividades', AtividadeSchema);
 
 const ItensSchema = new mongoose.Schema({
     titulo: String,
-    atividades: [AtividadeSchema]
+    atividades: [AtividadeSchema],
+    //Variavel para controlar exclusões do BD
+    statusExibicao: { type: Boolean, default: true },
 }, {
         timestamps: true,
     });
@@ -30,6 +34,8 @@ mongoose.model('Itens', ItensSchema);
 const CategoriaSchema = new mongoose.Schema({
     titulo: String,
     itens: [ItensSchema],
+    //Variavel para controlar exclusões do BD
+    statusExibicao: { type: Boolean, default: true },
 }, {
         timestamps: true,
     });

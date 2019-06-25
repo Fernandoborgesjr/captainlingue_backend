@@ -12,6 +12,10 @@ routes.get('/categoria', CategoriaController.index);
 const ItensController = require('./controllers/ItensController');
 routes.post('/categoria/itens',upload.single('image'), ItensController.store);
 routes.get('/categoria/itens', ItensController.index);
+
+const AtividadeController = require('./controllers/AtividadeController');
+routes.post('/categoria/itens/atividades',upload.single('image'), AtividadeController.store);
+routes.get('/categoria/itens/atividades', AtividadeController.index);
 //Interceptando requisições na rota raiz
 //Res: retorna algo para o cliente
 //Req: recebe parametro da requisição. localhost:3333?nome=Fernando

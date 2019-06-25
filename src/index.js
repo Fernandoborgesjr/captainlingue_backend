@@ -5,9 +5,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
-
-
 const app = express();
+
 //Para permitir que o servidor seja acessado pelas views Reactjs e Native
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -20,7 +19,8 @@ app.use((req, res, next) => {
     req.io = io;
     next();
 });
-
+//Para receber json na requisição
+app.use(express.json());
 app.use(cors());
 app.use(require('./routes'));
 
